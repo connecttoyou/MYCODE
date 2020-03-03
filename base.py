@@ -16,12 +16,12 @@ class PO():
         self._数量 = kwargs['数量']
         self._单价 = kwargs['单价']
         self._金额 = kwargs['金额']
-        self._税额 = kwargs['税额']
+        self._调拨单号 = kwargs['调拨单号']
         self._价税合计 = kwargs['价税合计']
 
     def getvalue(self):
         return {'订单编号':self._订单编号,'商品名称':self._商品名称, '项目编号':self._项目编号,'项目名称':self._项目名称,'订单日期':self._订单日期,'支出类型':self._支出类型,
-                '供应商':self._供应商,'数量':self._数量,'单价':self._单价,'金额':self._金额,'税额':self._税额,'价税合计':self._价税合计}
+                '供应商':self._供应商,'数量':self._数量,'单价':self._单价,'金额':self._金额,'调拨单号':self._调拨单号,'价税合计':self._价税合计}
 
 
 class DB():
@@ -37,7 +37,10 @@ class DB():
         self.数量 = kwargs['数量']
         self.单价 = kwargs['单价']
         self.金额 = kwargs['金额']
-    def
+        self.支出类型=kwargs['支出类型']
+        self._供应商 = kwargs['供应商']
+        self._价税合计 = kwargs['价税合计']
+        self._商品名称 = kwargs['商品名称']
 
 
 class DBResult():
@@ -65,9 +68,7 @@ class GetDB():
         for line in cookies.split(';'):# 把cookie字符串处理成字典，以便接下来使用
             key, value = line.split('=', 1)
             self._cookie[key] = value
-    # @cookie.setter
-    # def cookie(self):
-    #     return self._cookie
+
 
     #从给定的链接获取所有需要爬取的链接
     def url(self,url):
@@ -105,8 +106,6 @@ class GetDB():
 
     def getDBinfo(self,info):
         try:
-            # for info in self._DBlink_list:
-                # info=self._DBlink_list[0]
                 resp = requests.get(info['link'], headers=self._headers, cookies=self._cookie)
                 soup = BeautifulSoup(resp.text, 'lxml')
                 trs=soup.find_all("tr")
@@ -117,20 +116,8 @@ class GetDB():
                 info.update({'数量':int(ss)})
                 ss = trs[10].contents[5].text.replace(" ", '').replace("\r\n\t", '').replace("￥", '')
                 info.update({'单价':float(ss)})
-                # for tr in trs:
-                    # if tr.text.find('调拨源')>0 :#将调拨源加入结果
-                    #     # print(tr.text[tr.text.find('DB'):tr.text.find('预')].replace("\n",''))
-                    #     info.update({"调拨源":tr.text[tr.text.find('DB'):tr.text.find('预')].replace("\n",'')})
-                    #     self._DBInfo.append(info)
-                    # if tr.text.find('调拨含税金额')>0 :#将调拨金额加入结果
-                    #     s=str(tr.text.replace("\n\n\n",',').replace("\n",'').replace("￥",''))
-                    #     ss=s.split(',')
-                    #     ss[0].split(':')
-                    #     info.update({(ss[0].split(':'))[0]:float((ss[0].split(':'))[1]),(ss[1].split(':')[0]):float((ss[1].split(':'))[1])})
-                    #     if '调拨源' in info.keys():
-                    #         break
-
-                    # print("*********************************")
+                ss=trs[7].contents[1].contents[3].text
+                info.update({'支出类型':ss})
                 info.pop('link')
                 return info
         except:

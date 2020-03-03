@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f1540eee-d444-43c0-9a51-952b6ee016ff" name="Default Changelist" comment="" />
+    <list default="true" id="f1540eee-d444-43c0-9a51-952b6ee016ff" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/MYCODE.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MYCODE.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getxls.py" beforeDir="false" afterPath="$PROJECT_DIR$/getxls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oprate.py" beforeDir="false" afterPath="$PROJECT_DIR$/oprate.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +31,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../GetMSS/MssData.py" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/oprate.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -40,27 +48,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.oprate">
-    <configuration name="oprate" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="MYCODE" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/oprate.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="xls" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="MYCODE" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -82,9 +69,12 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.oprate" />
+      <item itemvalue="Python.xls" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.oprate" />
         <item itemvalue="Python.xls" />
       </list>
     </recent_temporary>
@@ -147,14 +137,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/base.py</url>
-          <line>118</line>
-          <option name="timeStamp" value="6" />
+          <url>file://$PROJECT_DIR$/oprate.py</url>
+          <line>84</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/oprate.py</url>
-          <line>76</line>
-          <option name="timeStamp" value="7" />
+          <url>file://$PROJECT_DIR$/base.py</url>
+          <line>112</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

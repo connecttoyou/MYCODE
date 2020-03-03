@@ -20,7 +20,7 @@ class ToEls():
 
     def toels(self):
         try:
-            self._wb = self._app.books.open("C:\\Users\\Administrator\\Desktop\\费用支出明细表")  # 打开模板
+            self._wb = self._app.books.open(os.getcwd()+"\\费用支出明细表")  # 打开模板
             sheet=self._wb.sheets[0]
             col=6
             key,item=list(self._result.keys()),list(self._result.values())
