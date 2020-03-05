@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1540eee-d444-43c0-9a51-952b6ee016ff" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/MYCODE.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MYCODE.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/支出表0304141539.xls" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/支出表0304143815.xls" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/支出表030584839.xls" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/base.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getxls.py" beforeDir="false" afterPath="$PROJECT_DIR$/getxls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/oprate.py" beforeDir="false" afterPath="$PROJECT_DIR$/oprate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/费用支出明细表" beforeDir="false" afterPath="$PROJECT_DIR$/费用支出明细表" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -111,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583141451189</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="新加入从订单汇总表到数据库，以及从数据库查询的代码（20200302）">
+      <created>1583222638360</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1583222638360</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -137,14 +146,29 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/oprate.py</url>
-          <line>84</line>
-          <option name="timeStamp" value="8" />
+          <url>file://$PROJECT_DIR$/base.py</url>
+          <line>49</line>
+          <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/base.py</url>
-          <line>112</line>
-          <option name="timeStamp" value="11" />
+          <line>111</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/oprate.py</url>
+          <line>78</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/getxls.py</url>
+          <line>31</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/oprate.py</url>
+          <line>10</line>
+          <option name="timeStamp" value="38" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

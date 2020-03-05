@@ -1,7 +1,7 @@
 import xlwings as xw
-from base import PO,DBResult,GetDB,DB
-import pymongo
+from base import *
 import os
+from getxls import *
 
 def getPofromxls(path='')  :  # 从excel文件中获取订单信息
     po=PO()
@@ -23,7 +23,30 @@ def getPofromxls(path='')  :  # 从excel文件中获取订单信息
     except Exception as ex:
         wb.close()
         app.quit()
-        print(ex )#
+        print(ex )
+
+def DBtoPO():#爬取调拨单信息，并将点播但转换成订单后存入数据库
+    cookie_str = "SESSION=69eef33e-23ad-484b-8f31-96ee6442a52d; NTKF_T2D_CLIENTID=guestD39A76D9-9CB2-D451-1271-A1F19DB6A748; LtpaToken=tQX78YHEEn1YBvIwIQdNNzNwQ8Sv9jiPOt7XKCqQnqRRmyaXBVcIDLbW1vn4E0FC4uQoBKnEtv96016BbU7hKthdAYTYzvYEL4e1cFDNZhixr1BYAZNUBekIU+i3Gbcy7AVAVCNyKsKLAEc6u+qOkFjrMNeJunE+ydkG5D72rfe2BuH7R2z5nVoZ8fZZnFgzH+WhiyqGTxrVS07YoVi5cPDfoq+DxGQr1VJSrAxZ6mGEiv9FoqkPPixaBEeR4PBJLNi2zZPcOvvyU7q6GF9FAB3vObByRF4MjR8KnTxlo+4=; aiportalut=QnNqNN4T/mSsOslHWJspY7N1a+8UBfEPzMXKyByE0xA=; nTalk_CACHE_DATA={uid:bl_1000_ISME9754_guestD39A76D9-9CB2-D4,tid:1583219785513166}"
+    url = 'http://www.eshop.unicom.local:8080/eshop/newprojectChange/queryChangeOrder.do?current=16&shopCode=hnyiy&type=in&page.currentPage=1&pageChangeFlag=1'
+    db = DB()
+    tdb=ToDB()
+    gdb=GetDB()
+    gdb.cookie(cookie_str)
+    # DBlink_list=gdb.url(url)
+    for link in gdb.url(url):
+        db.setvalue(**gdb.getDBinfo(link))
+        l,n=db.ToPo(tdb)
+        tdb.save_one("MssInfo",l.getvalue())
+        tdb.save_one("MssInfo",n.getvalue())
+    tdb.close()
+    print("调拨单转成订单完成！")
+
+def savetoMDB(path='C:\\Users\\zx\\Downloads\\34.xls'):#从excel获取订单信息后存入数据库
+    tdb=ToDB()
+    for tl in getPofromxls(path):
+         tdb.save_one("MssInfo",tl.getvalue())
+    tdb.close()
+    print("订单存入数据库完成！")
 
 def getPrjfromxls(path='')  :  # 从excel文件中获取项目名称和编号
     try:
@@ -39,73 +62,20 @@ def getPrjfromxls(path='')  :  # 从excel文件中获取项目名称和编号
     except Exception as ex:
         wb.close()
         app.quit()
-        print(ex )#
+        print(ex )
 
 
 
 
-class ToDB():
-    def __init__(self):
-        try:
-            self._myclient = pymongo.MongoClient("mongodb://localhost:27017/")
-            self._con=self._myclient["MssInfo"]
 
-        except Exception as ex:
-            print(ex)
-
-
-    def save_one(self,con,value):
-        mydb=self._con[con]
-        mydb.insert_one(document=value)
-
-    def save_many(self,con,value):
-        mydb = self._con[con]
-        mydb.insert_many(documents=value)
-
-    def _find(self,con,**kwargs):
-        if con=='prj':
-            mydb = self._con[con]
-            return mydb.find_one(kwargs)
-        elif con=="MssInfo":
-            mydb = self._con[con]
-            return mydb.find(kwargs)
-        else :
-            raise Exception("数据库错误")
-
-    def  findpo(self,**kwargs):
-        documents=self._find("MssInfo",**kwargs)
-        dbresult = DBResult()
-        for document in documents:
-            po = PO()
-            document.pop('_id')
-            po.setvalue(**document)
-            dbresult.setPO(po)
-
-    def findpri(self,**kwargs):
-        return self._find("prj", **kwargs).pop("_id")
-
-
-
-    def close(self):
-        self._myclient.close()
-
-
-cookie_str ='SESSION=86403084-95f7-426c-832e-383500b95a00; NTKF_T2D_CLIENTID=guestD39A76D9-9CB2-D451-1271-A1F19DB6A748; LtpaToken=tQX78YHEEn1YBvIwIQdNNzNwQ8Sv9jiPOt7XKCqQnqRRmyaXBVcIDCDDuq+PNAww4uQoBKnEtv96016BbU7hKthdAYTYzvYEL4e1cFDNZhixr1BYAZNUBekIU+i3Gbcy7AVAVCNyKsKLAEc6u+qOkFjrMNeJunE+ydkG5D72rfe2BuH7R2z5nVoZ8fZZnFgzH+WhiyqGTxrVS07YoVi5cPDfoq+DxGQr1VJSrAxZ6mGEiv9FoqkPPixaBEeR4PBJLNi2zZPcOvvyU7q6GF9FAB3vObByRF4MjR8KnTxlo+4=; aiportalut=o7Ou2ts6UgfrpXSWs2dezdGYpuY3YNRObVkszGXn0h0='
-url='http://www.eshop.unicom.local:8080/eshop/newprojectChange/queryChangeOrder.do?current=16&shopCode=hnyiy&type=in&page.currentPage=1&pageChangeFlag=1'
-
+#DBtoPO()
 
 tdb=ToDB()
-db=DB()
-gdb=GetDB()
-gdb.cookie(cookie_str)
-DBlink_list=gdb.url(url)
-for link in gdb.url(url):
-    db.setvalue(**gdb.getDBinfo(link))
-# for tl in getPrjfromxls('C:\\Users\\zx\\Downloads\\56.xls'):
-#     tdb.save_one(tl)
 
-# #     print('result')
-# result=tdb.findpo(项目编号='HEC19AE0B00005',支出类型="01建筑工程投资")
-tdb.findpri(项目名称='2019年中国联通湖南益阳宽带接入新建7期工程')
+
+
+toecl=ToEls()
+toecl.result=tdb.findpo(订单编号='PO-hnzy-20190722155634513',支出类型="01建筑工程投资")
+toecl.toels()
+
 tdb.close()
-print(os.getcwd())
